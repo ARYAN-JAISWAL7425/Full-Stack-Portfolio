@@ -113,5 +113,28 @@ public/shots/        Generated project screenshots
 
 ## Deploy
 
-Push to a Git repo and import on **Vercel** (zero config). Set your production
-domain, then update `site.url` in `lib/content.ts`.
+Live at **[aryantech.studio](https://aryantech.studio)**, deployed from `main`
+on Vercel. Two settings matter:
+
+- **Root Directory** must be `portfolio` — the app is not at the repo root.
+- **The path must not contain a space.** Vercel builds Serverless Function
+  names from the project path and rejects any name containing one:
+
+  ```
+  A Serverless Function has an invalid name:
+  "'Personal Portfolio/___next_launcher.cjs'"
+  ```
+
+  The build succeeds and the *deploy* fails, which makes it easy to misread.
+  That is why this directory is `portfolio/` and not `Personal Portfolio/`.
+
+Environment variables (Production):
+
+| Variable | Value |
+|---|---|
+| `NEXT_PUBLIC_SITE_URL` | `https://aryantech.studio` |
+| `NEXT_PUBLIC_WEB3FORMS_KEY` | your Web3Forms access key |
+
+`NEXT_PUBLIC_*` values are inlined at build time, so changing one needs a
+redeploy to take effect. Preview builds need neither: `siteUrl` falls back to
+`VERCEL_PROJECT_PRODUCTION_URL`, which Vercel sets automatically.
