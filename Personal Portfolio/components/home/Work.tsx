@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useRef, useState } from "react";
 import {
@@ -64,10 +65,10 @@ export default function Work() {
           {projects.map((p, i) => (
             <Link
               key={p.slug}
-              href={p.href ?? "/work"}
+              href={`/work/${p.slug}`}
               onMouseEnter={() => setActive(i)}
               onMouseLeave={() => setActive(null)}
-              data-cursor="view"
+              data-cursor="case study"
               className="group relative block border-t border-bone/12 last:border-b"
             >
               <div className="flex items-center justify-between gap-6 py-7 transition-all duration-500 group-hover:px-4 md:py-9">
@@ -113,17 +114,33 @@ export default function Work() {
                   exit={{ opacity: 0, scale: 0.8 }}
                   transition={{ duration: 0.4, ease: EASE }}
                   className={cn(
-                    "h-56 w-80 -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-xl border border-bone/15 bg-gradient-to-br shadow-2xl",
+                    "relative h-56 w-80 -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-xl border border-bone/15 bg-gradient-to-br shadow-2xl",
                     projects[active].gradient
                   )}
                 >
-                  <div className="flex h-full flex-col justify-between p-5">
+                  {projects[active].shot && (
+                    <>
+                      <Image
+                        src={projects[active].shot!}
+                        alt=""
+                        fill
+                        sizes="320px"
+                        className={cn(
+                          projects[active].shotFit === "contain"
+                            ? "object-contain p-4"
+                            : "object-cover object-top"
+                        )}
+                      />
+                      <div className="absolute inset-0 bg-ink/55" />
+                    </>
+                  )}
+                  <div className="relative flex h-full flex-col justify-between p-5">
                     <span className="font-mono text-[10px] uppercase tracking-mono text-bone/80">
                       {projects[active].role}
                     </span>
                     <div>
                       <p className="text-pretty text-sm text-bone/90">
-                        {projects[active].blurb}
+                        {projects[active].short}
                       </p>
                       <div className="mt-3 flex flex-wrap gap-1.5">
                         {projects[active].stack.slice(0, 4).map((s) => (

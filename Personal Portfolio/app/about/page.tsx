@@ -7,7 +7,7 @@ import CTASection from "@/components/ui/CTASection";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Aryan Jaiswal — VIT Bhopal AIML student documenting the journey into full-stack and GenAI engineering.",
+    "Aryan Jaiswal — full-stack developer and B.Tech CSE (AI & ML) undergrad at VIT Bhopal, building and shipping MERN and Supabase products.",
 };
 
 export default function AboutPage() {
@@ -17,7 +17,7 @@ export default function AboutPage() {
         index="02 / 06"
         eyebrow="About"
         titleLines={["The", "Person"]}
-        description="Student, builder, and storyteller focused on the path into full-stack and AI engineering."
+description="Full-stack developer, AI & ML undergrad, and a stubborn believer that a project only counts once it is deployed."
       />
       <AboutBody />
       <ExperienceTimeline />

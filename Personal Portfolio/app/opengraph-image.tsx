@@ -76,7 +76,7 @@ export default function OpengraphImage() {
               backgroundColor: "#F23A1D",
             }}
           />
-          <span>Designing &amp; building fast, considered web products.</span>
+          <span>Full-stack products, built end to end and shipped.</span>
         </div>
       </div>
     ),

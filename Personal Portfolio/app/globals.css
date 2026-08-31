@@ -151,6 +151,16 @@
     animation: grain-shift 8s steps(10) infinite;
   }
 
+  /* Keyboard bypass — the custom cursor, intro overlay and smooth scroll
+     make this the only fast path to content for keyboard users. */
+  .skip-link {
+    @apply fixed left-3 top-3 z-[200] -translate-y-[200%] rounded-full bg-vermillion
+      px-5 py-2.5 text-sm font-medium text-bone-2 transition-transform duration-200;
+  }
+  .skip-link:focus-visible {
+    @apply translate-y-0 outline outline-2 outline-offset-2 outline-ink dark:outline-bone;
+  }
+
   .edge-fade-r {
     -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
     mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);

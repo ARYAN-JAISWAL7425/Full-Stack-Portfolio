@@ -7,7 +7,7 @@ import CTASection from "@/components/ui/CTASection";
 export const metadata: Metadata = {
   title: "Experience",
   description:
-    "The journey so far — learning milestones, projects, and GenAI experiments.",
+    "Web development internships at 3Skill and ShadowFox, four shipped products, and seven machine learning models — the track record so far.",
 };
 
 export default function ExperiencePage() {
@@ -17,7 +17,7 @@ export default function ExperiencePage() {
         index="05 / 06"
         eyebrow="Experience"
         titleLines={["The", "Track Record"]}
-        description="Milestones, experiments, and the work that shaped the journey."
+description="Internships, shipped products and the models behind them — in order."
       />
       <ExperienceTimeline />
       <ExperienceExtras />

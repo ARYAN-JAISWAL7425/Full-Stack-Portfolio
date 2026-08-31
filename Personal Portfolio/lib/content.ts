@@ -1,23 +1,30 @@
 /* ============================================================
    SINGLE SOURCE OF CONTENT
    Edit everything about the site from this one file.
-   Replace the placeholder copy / links with your real details.
+   Every claim here should be backed by something a visitor can
+   click — a live deploy, a repo, or a profile.
    ============================================================ */
 
 export const site = {
   name: "Aryan Jaiswal",
   firstName: "Aryan",
   lastName: "Jaiswal",
-  role: "GenAI & Full-Stack Developer",
-  // Used for SEO / metadata base. Change to your real domain on deploy.
-  url: "https://aryanjaiswal.dev",
+  role: "Full-Stack Developer · AI & ML Undergrad",
+  // SEO / metadata base. No trailing slash — routes are appended directly.
+  url: "https://aryantech.studio",
   email: "aryanofficial7425@gmail.com",
   location: "Bhopal, India",
-  availability: "VIT Bhopal B.Tech AIML student — open to internships and collaborations (2026)",
+  // Short form — used in chips, meta rows and tight grid cells.
+  availability: "Open to internships",
+  // Long form — used in prose (footer, CTA).
+  availabilityLong:
+    "Open to full-stack internships and collaborations from 2026",
   tagline:
-    "My digital home: a living log of my story, my builds, and my path into full-stack + AI engineering.",
+    "I build and ship full-stack products end to end — marketplaces, storefronts, real-time apps — and I put every one of them online.",
   intro:
-    "B.Tech AIML student at VIT Bhopal learning full-stack and GenAI engineering. I build small products, prototype AI systems, and document the journey end to end.",
+    "Full-stack developer and B.Tech CSE (AI & ML) undergrad at VIT Bhopal. I build MERN and Supabase products with real auth, payments and real-time features, then deploy them so you can actually use them.",
+  // Served from /public. Replace the file to update the download.
+  resume: "/Aryan_Jaiswal_Resume.pdf",
 };
 
 /**
@@ -33,16 +40,23 @@ export const siteUrl =
     ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
     : site.url);
 
+export const github = "https://github.com/ARYAN-JAISWAL7425";
+
 export const socials = [
   {
     label: "GitHub",
     handle: "@ARYAN-JAISWAL7425",
-    href: "https://github.com/ARYAN-JAISWAL7425",
+    href: github,
   },
   {
     label: "LinkedIn",
-    handle: "in/aryan-jaiswal",
+    handle: "in/aryan-jaiswal-a87b5335a",
     href: "https://www.linkedin.com/in/aryan-jaiswal-a87b5335a",
+  },
+  {
+    label: "LeetCode",
+    handle: "@AryanTechies",
+    href: "https://leetcode.com/u/AryanTechies/",
   },
   {
     label: "Email",
@@ -67,31 +81,32 @@ export type StatItem = {
   decimals?: number;
 };
 
+/** Every number here is countable from the work below — keep it that way. */
 export const stats: StatItem[] = [
-  { value: 15, suffix: "+", label: "Projects built" },
-  { value: 2, suffix: "+", label: "Years learning full-stack" },
-  { value: 6, suffix: "+", label: "AI prototypes shipped" },
-  { value: 3, suffix: "+", label: "Hackathons joined" },
+  { value: 4, suffix: "", label: "Products shipped live" },
+  { value: 2, suffix: "", label: "Dev internships" },
+  { value: 7, suffix: "", label: "ML models built" },
+  { value: 20, suffix: "+", label: "Public repositories" },
 ];
 
 export const capabilities = [
   {
     no: "01",
-    title: "Full-Stack Foundations",
-    body: "Building modern web apps from UI to API — shipping clean, fast experiences with solid architecture.",
-    tags: ["Next.js", "React", "TypeScript"],
+    title: "Full-Stack Product Builds",
+    body: "React and Next.js front ends on Node/Express or Supabase back ends — auth, database design, dashboards, deploy. Four of them are live right now.",
+    tags: ["React", "Node.js", "MongoDB"],
   },
   {
     no: "02",
-    title: "GenAI Engineering Path",
-    body: "Exploring AI agents, LLM apps, and RAG systems with an emphasis on practical product use cases.",
-    tags: ["LLM Apps", "AI Agents", "RAG"],
+    title: "Payments & Real-Time",
+    body: "The parts that are easy to fake and hard to finish: Razorpay and Stripe checkout, Socket.IO messaging, media uploads, row-level security.",
+    tags: ["Razorpay", "Socket.IO", "Supabase"],
   },
   {
     no: "03",
-    title: "Product Craft",
-    body: "Design, storytelling, and shipping discipline — so the work feels intentional and memorable.",
-    tags: ["UI/UX", "Motion", "Product Story"],
+    title: "Applied AI & ML",
+    body: "Trained models for health and recommendation problems in Python, and shipped in-browser TensorFlow.js verification inside a production app.",
+    tags: ["Python", "TensorFlow", "TF.js"],
   },
 ];
 
@@ -101,135 +116,281 @@ export type Project = {
   title: string;
   category: string;
   year: string;
+  /** One line for the hover preview card — keep it short. */
+  short: string;
   blurb: string;
   role: string;
   stack: string[];
   gradient: string; // tailwind classes for thumbnail backdrop
-  href?: string;
+  live?: string;
+  repo?: string;
+  /** Screenshot in /public/shots — generated by `npm run shots`. */
+  shot?: string;
+  /**
+   * How the screenshot sits in a card. "contain" for portrait/mobile captures
+   * (shown as a device mockup on the gradient); "cover" for wide desktop ones.
+   */
+  shotFit?: "cover" | "contain";
+  /**
+   * Read-only demo account, shown next to the live link so a visitor can get
+   * past the login wall. `user` is whatever the app asks for — an email for
+   * FitStake/Voyago/Forever, a username for Chatapp. Leave undefined until a
+   * demo account actually exists; the UI simply hides the block.
+   */
+  demo?: { user: string; password: string; note?: string };
+  /** Case-study page content (/work/[slug]). */
+  overview: string;
+  highlights: { title: string; body: string }[];
+  /** Anything notable about how it is tested or run. */
+  notes?: string[];
 };
 
 export const projects: Project[] = [
   {
-    slug: "fintrail",
+    slug: "fitstake",
     index: "01",
-    title: "Fintrail",
-    category: "Fintech · SaaS Platform",
-    year: "2025",
+    title: "FitStake",
+    category: "Fitness · Full-Stack Product",
+    year: "May 2026",
+    short: "Stake real money on a 30-day fitness goal, verified by in-browser AI.",
     blurb:
-      "A real-time spend analytics platform giving finance teams a live, beautiful view of every transaction.",
-    role: "Lead Full-Stack Engineer",
-    stack: ["Next.js", "TypeScript", "PostgreSQL", "tRPC", "Stripe"],
+      "Put money behind a 30-day fitness goal: finish and your stake comes back, fall short and it goes to charity. Daily goals aren't completed by tapping a button — photos are checked in-browser by TensorFlow.js and fingerprinted so proof can't be reused.",
+    role: "Solo full-stack build",
+    stack: ["React", "TypeScript", "Express", "MongoDB", "TensorFlow.js", "Razorpay"],
     gradient: "from-[#F23A1D] via-[#FF8A6E] to-[#1b1a17]",
-    href: "#",
+    live: "https://fit-stake-nu.vercel.app/",
+    repo: "https://github.com/ARYAN-JAISWAL7425/FitStake",
+    demo: {
+      user: "demo@example.com",
+      password: "DemoPass123!",
+      note: "Payments run in test mode — no real money moves. The API sleeps when idle, so the first request can take up to a minute.",
+    },
+    shot: "/shots/fitstake.png",
+    shotFit: "contain",
+    overview:
+      "FitStake turns a fitness goal into a financial commitment. You lock ₹100–₹10,000 behind a 30-day cycle: complete 25 of the 30 days and the full stake returns to your wallet; fall short and it is donated to a charity you picked, in your name. The product takes ₹0 from users either way — the money exists purely as a commitment device.",
+    highlights: [
+      {
+        title: "Verification you can't fake",
+        body: "A goal isn't complete because you tapped a button. Water, diet and sleep goals need a photo checked by TensorFlow.js COCO-SSD object detection. Strength and cardio goals run MoveNet pose detection to confirm active posture. Step counts pull live from the Google Fit API, capped at 50,000 a day.",
+      },
+      {
+        title: "Inference stays in the browser",
+        body: "All the model work runs client-side, so a photo is never uploaded just to be checked. Once an image passes, it is stored as proof and fingerprinted with SHA-256 — the same picture can't be replayed on another day or against another goal.",
+      },
+      {
+        title: "Money handling has to be exact",
+        body: "Stakes lock atomically against the wallet balance, so a double submit can't stake twice. Top-ups run through Razorpay and Stripe with server-side verification, and cycle completions are idempotent — replaying a request never pays out twice.",
+      },
+      {
+        title: "Systems that keep people coming back",
+        body: "Fitness Points on every verified goal, a Bronze-to-Platinum tier ladder that self-heals when state drifts, a reward catalog, manual freeze days to protect a streak, and Squads for group accountability.",
+      },
+    ],
+    notes: [
+      "Backend tested with Vitest, Supertest and mongodb-memory-server; frontend covered by Playwright end-to-end tests.",
+      "Built as a college capstone project.",
+    ],
   },
   {
-    slug: "orbit-hr",
+    slug: "voyago",
     index: "02",
-    title: "Orbit HR",
-    category: "B2B · Dashboard",
-    year: "2024",
+    title: "Voyago",
+    category: "Marketplace · Two-Sided Platform",
+    year: "May 2026",
+    short: "A two-sided trip marketplace — operators, travellers and admins.",
     blurb:
-      "People-ops dashboard unifying onboarding, payroll and reviews into one calm, fast workspace.",
-    role: "Full-Stack Developer",
-    stack: ["React", "Node.js", "GraphQL", "Redis", "AWS"],
+      "A marketplace for curated group trips, with an India-first catalog. Operators list and manage trips, travellers browse and pay through Razorpay, and a separate admin console moderates listings, payouts and disputes — all on one Supabase project with row-level security.",
+    role: "Solo full-stack build",
+    stack: ["React 19", "TypeScript", "Supabase", "PostgreSQL", "Razorpay", "Tailwind"],
     gradient: "from-[#2b2a25] via-[#6F6A60] to-[#0e0e0c]",
-    href: "#",
+    live: "https://voyago-zeta-coral.vercel.app/",
+    repo: "https://github.com/ARYAN-JAISWAL7425/Voyage",
+    demo: {
+      user: "demo@example.com",
+      password: "DemoPass123!",
+      note: "On the welcome screen pick “I’m a Traveler” to browse and book, or the operator path to see the trip-listing dashboard.",
+    },
+    shot: "/shots/voyago.png",
+    overview:
+      "A two-sided marketplace for curated group travel. Operators list and manage trips, travellers browse and book them, and a separate admin console moderates the platform. Two front ends and one admin app share a single Supabase project.",
+    highlights: [
+      {
+        title: "Three roles, one database",
+        body: "Traveller, operator and admin permissions are enforced in Postgres by row-level security rather than in the client, with SECURITY DEFINER RPCs for the operations that have to cross a policy boundary. A compromised front end still can't read another operator's bookings.",
+      },
+      {
+        title: "Payments never touch the client",
+        body: "Razorpay order creation and signature verification run in Deno edge functions, so the secret key never ships to the browser. The client only ever sees an order id.",
+      },
+      {
+        title: "The admin app most projects skip",
+        body: "A second front end, gated behind its own admin role, covering operators, listings, bookings, payments, disputes and users — the console you actually need to run a marketplace.",
+      },
+      {
+        title: "Reviewable with zero setup",
+        body: "With no Supabase environment variables set, the front end serves a built-in demo catalog so the whole UI runs standalone. Add the keys and it switches to live data automatically.",
+      },
+    ],
+    notes: [
+      "Monorepo: Frontend/ (traveller + operator), adminPanel/ (admin console), supabase/ (schema, RLS policies, RPCs, edge functions).",
+      "Admin console deployed separately at voyago-admin-five.vercel.app.",
+    ],
   },
   {
-    slug: "caretake",
+    slug: "forever",
     index: "03",
-    title: "Caretake",
-    category: "Healthtech · MVP",
-    year: "2024",
+    title: "Forever",
+    category: "E-Commerce · MERN",
+    year: "May 2026",
+    short: "A full MERN storefront with payments, media uploads and an admin panel.",
     blurb:
-      "A 0→1 patient-care MVP taken from Figma to launched product in eight focused weeks.",
-    role: "Founding Engineer (Contract)",
-    stack: ["Next.js", "Prisma", "PostgreSQL", "Tailwind", "Vercel"],
+      "A full clothing storefront — catalog, filters, cart, checkout and order history — with JWT accounts, Stripe and Razorpay payments, Cloudinary media, and a separate admin panel for products and orders.",
+    role: "Solo full-stack build",
+    stack: ["React 19", "Node.js", "Express", "MongoDB", "Stripe", "Cloudinary"],
     gradient: "from-[#F23A1D] via-[#7a2417] to-[#0e0e0c]",
-    href: "#",
+    live: "https://ecommerce-frontend-omega-red-83.vercel.app/",
+    repo: "https://github.com/ARYAN-JAISWAL7425/Ecommerce-website",
+    demo: {
+      user: "demo@example.com",
+      password: "DemoPass123!",
+      note: "Browse, add to cart and place an order — payments run in test mode.",
+    },
+    shot: "/shots/forever.png",
+    overview:
+      "A complete clothing storefront and the admin panel that runs it. Visitors browse and filter a catalog, add to cart, check out through Stripe or Razorpay, and track their orders — while an operator manages products, stock and fulfilment from a separate app.",
+    highlights: [
+      {
+        title: "Three apps, one API",
+        body: "Storefront, admin panel and an Express API. Cart, order, product and user concerns each get their own route and controller pair instead of collapsing into one handler file.",
+      },
+      {
+        title: "Two payment providers, one order flow",
+        body: "Stripe and Razorpay both feed the same checkout, with a dedicated verify step that confirms the payment before an order is ever marked paid.",
+      },
+      {
+        title: "Media handled properly",
+        body: "Product images upload through Multer and are stored on Cloudinary, so the API serves URLs instead of binaries and the database stays small.",
+      },
+      {
+        title: "Real accounts",
+        body: "JWT sessions with bcrypt password hashing and validator-checked input on registration — not a mocked login screen.",
+      },
+    ],
   },
   {
-    slug: "meridian",
+    slug: "chatapp",
     index: "04",
-    title: "Meridian",
-    category: "Marketing · Web Experience",
-    year: "2023",
+    title: "Chatapp",
+    category: "Real-Time · Messaging",
+    year: "Jun 2026",
+    short: "Real-time one-to-one messaging with presence, over WebSockets.",
     blurb:
-      "An award-worthy product site with WebGL hero, smooth scroll and a headless CMS for the team.",
-    role: "Frontend Lead",
-    stack: ["Next.js", "Three.js", "GSAP", "Sanity"],
+      "One-to-one messaging over WebSockets with JWT auth, live online presence and instant delivery. Client state runs on Redux Toolkit with persistence, so a refresh never loses the thread.",
+    role: "Solo full-stack build",
+    stack: ["React", "Redux Toolkit", "Node.js", "Socket.IO", "MongoDB"],
     gradient: "from-[#3a3933] via-[#8A8478] to-[#131210]",
-    href: "#",
+    live: "https://chatapps-chi.vercel.app/login",
+    repo: "https://github.com/ARYAN-JAISWAL7425/Chatapp",
+    shot: "/shots/chatapp.png",
+    overview:
+      "Real-time one-to-one messaging. JWT-authenticated accounts, a contact list with live online presence, and messages that land without a refresh.",
+    highlights: [
+      {
+        title: "Socket layer separate from REST",
+        body: "Express owns authentication and message history; a dedicated Socket.IO layer owns delivery and presence. The server keeps its own socket map so an active connection can be resolved at send time.",
+      },
+      {
+        title: "State that survives a refresh",
+        body: "Redux Toolkit with redux-persist keeps auth and the active conversation across reloads, so reopening the tab doesn't drop you back at the login screen.",
+      },
+      {
+        title: "Presence, not just delivery",
+        body: "Online and offline status is broadcast on connect and disconnect, so the contact list reflects who is actually reachable right now.",
+      },
+      {
+        title: "Deployed as two services",
+        body: "React client and Node server deploy independently, with CORS and cookie auth configured to work across origins rather than assuming one host.",
+      },
+    ],
   },
 ];
 
 export const services = [
   {
     no: "01",
-    title: "Full-Stack Builds",
-    body: "React, Next.js, APIs, databases, and deployment — the full loop from idea to shipped app.",
+    title: "Full-Stack Web Apps",
+    body: "React or Next.js on the front, Node/Express or Supabase behind it, MongoDB or Postgres underneath — built as one coherent product, not stitched parts.",
   },
   {
     no: "02",
-    title: "SaaS Thinking",
-    body: "Exploring SaaS patterns: auth, billing, dashboards, and the foundations for scalable products.",
+    title: "Auth & Payments",
+    body: "JWT sessions, password hashing, role gates and row-level security; Razorpay and Stripe checkout with server-side order creation and signature verification.",
   },
   {
     no: "03",
-    title: "GenAI Experiments",
-    body: "AI agents, LLM apps, and workflow automation prototypes with real product intent.",
+    title: "Real-Time Features",
+    body: "Socket.IO messaging, presence, and live updates — the state-sync problems that only show up once two browsers are open at the same time.",
   },
   {
     no: "04",
-    title: "RAG & Retrieval",
-    body: "Chunking, embeddings, vector search, and retrieval patterns for useful AI experiences.",
+    title: "Admin Dashboards",
+    body: "The second front end most projects skip: separate consoles for moderation, inventory and payouts, gated behind their own roles.",
   },
   {
     no: "05",
-    title: "Automation & Agents",
-    body: "Building small systems that remove friction — scripts, bots, and reliable workflows.",
+    title: "Applied ML",
+    body: "Classification and recommendation models in Python and scikit-learn, plus browser-side TensorFlow.js when inference belongs on the client.",
   },
   {
     no: "06",
-    title: "Modern Web Craft",
-    body: "Motion, performance, and accessibility — the details that make experiences feel premium.",
-  },
-  {
-    no: "07",
-    title: "Product Mindset",
-    body: "Turning messy ideas into clear scopes, usable flows, and steady iterations.",
-  },
-  {
-    no: "08",
-    title: "Open Source + Learning",
-    body: "Sharing what I learn, documenting in public, and contributing where I can.",
+    title: "Ship & Deploy",
+    body: "Environment config, media pipelines, production builds and Vercel deploys — every project here has a URL you can open.",
   },
 ];
 
 export const skillGroups = [
   {
     title: "Frontend",
-    items: ["React", "Next.js", "TypeScript", "JavaScript", "Tailwind CSS", "Framer Motion"],
+    items: [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "JavaScript",
+      "Tailwind CSS",
+      "Vite",
+      "Redux Toolkit",
+      "React Router",
+      "Framer Motion",
+    ],
   },
   {
     title: "Backend",
-    items: ["Node.js", "Express.js", "REST APIs", "GraphQL", "tRPC"],
+    items: ["Node.js", "Express", "REST APIs", "Socket.IO", "JWT Auth", "Mongoose", "Zod"],
   },
   {
-    title: "Database",
-    items: ["PostgreSQL", "MongoDB", "Redis", "Prisma"],
+    title: "Data & Platform",
+    items: ["MongoDB", "PostgreSQL", "Supabase", "Cloudinary", "Vercel"],
   },
   {
-    title: "AI & GenAI",
-    items: ["Python", "LLM APIs", "RAG", "Vector Databases", "AI Agents"],
+    title: "Integrations",
+    items: ["Razorpay", "Stripe", "Google OAuth", "Nodemailer", "Google Fit API"],
   },
   {
-    title: "DevOps & Cloud",
-    items: ["Docker", "AWS", "Vercel", "CI/CD", "GitHub Actions"],
+    title: "AI & ML",
+    items: [
+      "Python",
+      "scikit-learn",
+      "pandas / NumPy",
+      "TensorFlow / Keras",
+      "PyTorch",
+      "TensorFlow.js",
+      "Jupyter",
+    ],
   },
   {
-    title: "Tools",
-    items: ["Git", "GitHub", "VS Code", "Postman", "Figma"],
+    title: "Languages & Tools",
+    items: ["Java", "C++", "SQL", "DSA", "Git & GitHub", "Postman", "Figma", "VS Code"],
   },
 ];
 
@@ -243,59 +404,81 @@ export type ExperienceItem = {
 
 export const experience: ExperienceItem[] = [
   {
-    period: "2024 — Now",
-    role: "B.Tech AIML Student",
-    company: "VIT Bhopal University",
+    period: "2026 · 2 months",
+    role: "Web Development Intern",
+    company: "3Skill (Remote)",
     summary:
-      "Building a foundation in AI/ML while shipping full-stack projects and documenting the learning path in public.",
-    tags: ["AIML", "Full-Stack", "Projects"],
+      "Built full-stack product modules end to end on the MERN stack — React front ends shipped against RESTful Express/Node APIs backed by MongoDB. Implemented core authentication and application features, and optimised API query performance to improve responsiveness on key user flows.",
+    tags: ["MERN", "Auth", "API Performance"],
   },
   {
-    period: "2023 — 2024",
-    role: "Full-Stack Learning Sprint",
+    period: "Jun 2026 · 1 month",
+    role: "Web Development Intern",
+    company: "ShadowFox (Remote)",
+    summary:
+      "Shipped full-stack features on a one-month delivery timeline: RESTful APIs with MongoDB for CRUD operations, and reusable, responsive React components built to be handed on rather than rewritten.",
+    tags: ["React", "REST APIs", "Delivery"],
+  },
+  {
+    period: "2026",
+    role: "Independent Product Builds",
     company: "Self-directed",
     summary:
-      "Focused on React, Next.js, APIs, and databases — building small products to learn by shipping.",
-    tags: ["React", "Next.js", "APIs"],
+      "Designed, built and deployed four full-stack products — FitStake, Voyago, Forever and Chatapp — covering payments, real-time messaging, admin consoles and in-browser machine learning.",
+    tags: ["Full-Stack", "Payments", "Real-Time"],
   },
   {
-    period: "2022 — 2023",
-    role: "Programming Foundations",
-    company: "Curiosity-driven",
+    period: "2025",
+    role: "Machine Learning Foundations",
+    company: "Self-directed",
     summary:
-      "Learned core programming concepts and built early web experiments and automation scripts.",
-    tags: ["JavaScript", "HTML/CSS", "Automation"],
+      "Trained seven models across health diagnostics, price prediction and recommendation systems — diabetes, heart disease, retinal and OCT scan classification, Bangalore housing prices, movies and songs.",
+    tags: ["Python", "scikit-learn", "Deep Learning"],
+  },
+  {
+    period: "Aug 2024 — Aug 2028",
+    role: "B.Tech, Computer Science & Engineering (AI & ML)",
+    company: "VIT Bhopal University",
+    summary:
+      "Coursework in data structures and algorithms, DBMS, machine learning, probability and statistics, and linear algebra — with side products shipped in parallel throughout.",
+    tags: ["DSA", "DBMS", "Machine Learning"],
   },
 ];
 
 export const certifications = [
-  { title: "B.Tech AIML (In progress)", issuer: "VIT Bhopal University", year: "Present" },
-  { title: "Full-Stack + GenAI Learning Path", issuer: "Self-directed", year: "Ongoing" },
-  { title: "Hackathons & Builder Events", issuer: "Community", year: "Ongoing" },
+  { title: "Web Development Internship", issuer: "3Skill", year: "2026 · 2 months" },
+  { title: "Web Development Internship", issuer: "ShadowFox", year: "2026 · 1 month" },
+  {
+    title: "B.Tech CSE — AI & ML (in progress)",
+    issuer: "VIT Bhopal University",
+    year: "2024 — 2028",
+  },
 ];
 
 export const achievements = [
-  "Built 15+ projects across full-stack and early-stage AI experiments.",
-  "Prototyped 6 GenAI ideas spanning agents, chat workflows, and RAG apps.",
-  "Active in hackathons and builder communities — learning by shipping.",
-  "Documenting the journey publicly to stay consistent and accountable.",
+  "Shipped four full-stack products to production in 2026 — every one has a live URL and a public repo.",
+  "Built FitStake's verification layer: TensorFlow.js object and pose detection running in the browser, with SHA-256 proof fingerprinting to block reused photos.",
+  "Designed Voyago as a genuine two-sided marketplace — operator, traveller and admin roles enforced by Postgres row-level security.",
+  "Integrated Razorpay and Stripe with server-side order creation and signature verification across two separate products.",
+  "Completed back-to-back web development internships at 3Skill and ShadowFox during 2026.",
+  "Trained seven ML models in 2025 across medical imaging, tabular prediction and recommendation systems.",
 ];
 
 export const values = [
   {
-    title: "Build in public",
-    body: "Learning sticks when it's shared — progress, mistakes, and insights included.",
+    title: "Ship it, then talk",
+    body: "A project isn't real until it has a URL. Everything on this site is deployed and open to click.",
   },
   {
-    title: "Story over hype",
-    body: "I care about authentic progress more than inflated claims or empty buzzwords.",
+    title: "Finish the hard 20%",
+    body: "Payments, auth, roles and real-time sync are where most side projects stop. That's the part worth building.",
   },
   {
-    title: "Craft the fundamentals",
-    body: "Strong basics in architecture, performance, and UX create the freedom to experiment.",
+    title: "Honest scope",
+    body: "I'd rather show four products I can defend line by line than a long list I can't.",
   },
   {
-    title: "Stay curious",
-    body: "I follow the most interesting problems — SaaS, automation, agents, and applied AI.",
+    title: "Learn by building",
+    body: "Every stack here — Supabase, Socket.IO, TensorFlow.js — was picked up by shipping something that needed it.",
   },
 ];

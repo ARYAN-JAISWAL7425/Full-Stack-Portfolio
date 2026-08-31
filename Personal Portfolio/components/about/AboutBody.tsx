@@ -31,30 +31,31 @@ export default function AboutBody() {
           <div>
             <h2 className="font-display text-[clamp(1.7rem,3.6vw,3rem)] font-bold leading-[1.1] tracking-tight">
               <SplitWords
-                text="I'm Aryan — a VIT Bhopal AIML student building my path into full-stack and GenAI engineering."
-                highlight={["full-stack", "GenAI"]}
+                text="I'm Aryan — a full-stack developer and AI & ML undergrad at VIT Bhopal who ships what he builds."
+                highlight={["full-stack", "ships"]}
               />
             </h2>
             <div className="mt-8 space-y-5 text-pretty leading-relaxed text-muted dark:text-bone/55">
               <Reveal delay={0.05}>
                 <p>
-                  This site is my digital home. It holds the work I&apos;m proud of, the projects
-                  I&apos;m building right now, and the experiments that are pushing me toward AI
-                  engineering.
+                  Most of what I know came from finishing things. In 2026 I built and deployed
+                  four products — a fitness accountability app that verifies your goals with
+                  in-browser AI, a two-sided travel marketplace, a MERN storefront, and a
+                  real-time chat app. All four are live and open source.
                 </p>
               </Reveal>
               <Reveal delay={0.1}>
                 <p>
-                  I&apos;m passionate about products that blend solid software engineering with
-                  applied AI — SaaS workflows, AI agents, LLM apps, RAG systems, and automation
-                  that saves people time.
+                  I gravitate toward the parts most side projects skip: real authentication and
+                  roles, Razorpay and Stripe checkout verified server-side, WebSocket state that
+                  survives a refresh, and a second admin front end to run it all.
                 </p>
               </Reveal>
               <Reveal delay={0.15}>
                 <p>
-                  I learn by shipping, writing, and sharing. Based in {site.location}, I&apos;m
-                  open to internships, collaborations, and builder communities that care about
-                  craft.
+                  Before the web I spent 2025 on machine learning — seven models across medical
+                  imaging, price prediction and recommendation systems. Based in {site.location},
+                  I&apos;m open to internships and collaborations where I get to build and ship.
                 </p>
               </Reveal>
             </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { certifications, achievements } from "@/lib/content";
+import { certifications, achievements, socials } from "@/lib/content";
 import Reveal from "@/components/ui/Reveal";
 
 export default function ExperienceExtras() {
@@ -9,10 +9,10 @@ export default function ExperienceExtras() {
       <div className="container-x grid gap-16 md:grid-cols-2">
         {/* certifications */}
         <div>
-          <span className="eyebrow">/ Certifications</span>
+          <span className="eyebrow">/ Credentials</span>
           <div className="mt-8 divide-y divide-ink/12 dark:divide-bone/12 border-y border-ink/12 dark:border-bone/12">
             {certifications.map((c, i) => (
-              <Reveal key={c.title} delay={i * 0.06}>
+              <Reveal key={`${c.issuer}-${c.title}`} delay={i * 0.06}>
                 <div className="flex items-baseline justify-between gap-6 py-5">
                   <div>
                     <h3 className="font-display text-lg font-bold tracking-tight">
@@ -25,11 +25,30 @@ export default function ExperienceExtras() {
               </Reveal>
             ))}
           </div>
+
+          <Reveal delay={0.2}>
+            <div className="mt-10 flex flex-wrap gap-x-8 gap-y-3 font-mono text-[11px] uppercase tracking-mono">
+              {socials
+                .filter((s) => s.label === "GitHub" || s.label === "LeetCode")
+                .map((s) => (
+                  <a
+                    key={s.label}
+                    href={s.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    data-cursor="visit"
+                    className="link-underline text-ink dark:text-bone"
+                  >
+                    {s.label} {s.handle} ↗
+                  </a>
+                ))}
+            </div>
+          </Reveal>
         </div>
 
         {/* achievements */}
         <div>
-          <span className="eyebrow">/ Selected achievements</span>
+          <span className="eyebrow">/ What that looked like</span>
           <ul className="mt-8 space-y-5">
             {achievements.map((a, i) => (
               <Reveal key={i} delay={i * 0.06}>

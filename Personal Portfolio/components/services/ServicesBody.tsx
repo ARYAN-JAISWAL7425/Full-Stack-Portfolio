@@ -4,19 +4,19 @@ import { services } from "@/lib/content";
 import Reveal from "@/components/ui/Reveal";
 
 const process = [
-  { no: "01", title: "Explore", body: "Pick a real problem, define the scope, and choose a small, shippable slice." },
-  { no: "02", title: "Prototype", body: "Build the smallest version that proves the idea and teaches something." },
-  { no: "03", title: "Ship", body: "Deploy, measure, and document what worked and what didn&apos;t." },
-  { no: "04", title: "Iterate", body: "Refine the product, deepen the tech, and stack another skill." },
+  { no: "01", title: "Scope", body: "Pick a real problem and cut it to the smallest version that is still worth using." },
+  { no: "02", title: "Build", body: "Data model first, then the hard flow — auth, payments or real-time — before any polish." },
+  { no: "03", title: "Ship", body: "Deploy it, put the URL in public, and document what worked and what didn’t." },
+  { no: "04", title: "Iterate", body: "Fix what real use exposes, then pick the next project around the skill I want next." },
 ];
 
 export default function ServicesBody() {
   return (
     <>
       <section className="bg-bone dark:bg-night pb-24">
-        <div className="container-x grid gap-px overflow-hidden rounded-2xl border border-ink/12 dark:border-bone/12 bg-ink/12 dark:bg-bone/12 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="container-x grid gap-px overflow-hidden rounded-2xl border border-ink/12 dark:border-bone/12 bg-ink/12 dark:bg-bone/12 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((s, i) => (
-            <Reveal key={s.no} delay={(i % 4) * 0.06}>
+            <Reveal key={s.no} delay={(i % 3) * 0.06}>
               <div className="group flex h-full flex-col justify-between gap-12 bg-bone dark:bg-night p-7 transition-colors duration-500 hover:bg-ink hover:text-bone dark:hover:bg-bone dark:hover:text-ink">
                 <div className="flex items-start justify-between">
                   <span className="font-mono text-xs text-muted dark:text-bone/55 group-hover:text-bone/50 dark:group-hover:text-ink/50">
@@ -42,7 +42,7 @@ export default function ServicesBody() {
         <div className="container-x">
           <span className="eyebrow">/ How I build</span>
           <h2 className="mt-6 max-w-2xl font-display text-[clamp(1.9rem,4.5vw,3.5rem)] font-bold leading-[1.05] tracking-tight">
-            A steady loop of learning, shipping, and improving.
+            Scope it small, build the hard part first, ship it, then go again.
           </h2>
           <div className="mt-16 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
             {process.map((p, i) => (

@@ -6,7 +6,7 @@ import CTASection from "@/components/ui/CTASection";
 export const metadata: Metadata = {
   title: "Work",
   description:
-    "Selected full-stack projects — SaaS platforms, dashboards, MVPs and web experiences built with Next.js, TypeScript and Node.js.",
+    "Four full-stack products built and deployed by Aryan Jaiswal — a fitness accountability app, a travel marketplace, a MERN storefront and a real-time chat app.",
 };
 
 export default function WorkPage() {
@@ -16,7 +16,7 @@ export default function WorkPage() {
         index="01 / 06"
         eyebrow="Selected Work"
         titleLines={["Selected", "Work"]}
-        description="A selection of products I've designed and engineered end-to-end — from fintech platforms to 0→1 startup MVPs."
+description="Four products I built end to end and deployed — payments, real-time messaging, admin consoles and in-browser ML. Every one has a live URL and open source."
       />
       <WorkGrid />
       <CTASection />

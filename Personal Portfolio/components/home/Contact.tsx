@@ -28,8 +28,8 @@ export default function Contact() {
             </h2>
 
             <p className="mt-10 max-w-md text-pretty leading-relaxed text-bone/65 md:text-lg lg:max-w-lg lg:text-xl">
-              If you want to share feedback, talk about projects, or collaborate on
-              something interesting, my inbox is open.
+              Hiring for an internship, need a full-stack build finished, or just want to
+              talk about something you&apos;re making? My inbox is open.
             </p>
 
             <div className="mt-12 flex flex-wrap gap-x-10 gap-y-3">

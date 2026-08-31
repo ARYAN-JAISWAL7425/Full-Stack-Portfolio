@@ -22,8 +22,8 @@ export default function Footer() {
               {site.email}
             </a>
             <p className="mt-6 max-w-sm text-bone/60">
-              Have a project in mind or a role to fill? I&apos;m currently{" "}
-              <span className="text-vermillion-soft">{site.availability.toLowerCase()}</span>.
+              Have a project in mind or a role to fill?{" "}
+              <span className="text-vermillion-soft">{site.availabilityLong}</span>.
             </p>
           </div>
 
@@ -43,6 +43,11 @@ export default function Footer() {
           <div>
             <p className="eyebrow text-bone/50">/ Elsewhere</p>
             <ul className="mt-5 space-y-2.5">
+              <li>
+                <a href={site.resume} download className="link-underline text-bone/80">
+                  Résumé (PDF)
+                </a>
+              </li>
               {socials.map((s) => (
                 <li key={s.label}>
                   <a

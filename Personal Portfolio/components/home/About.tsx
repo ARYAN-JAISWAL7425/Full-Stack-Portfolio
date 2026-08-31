@@ -22,16 +22,16 @@ export default function About() {
         {/* big statement */}
         <h2 className="mt-10 max-w-5xl font-display text-[clamp(1.9rem,4.6vw,4.2rem)] font-bold leading-[1.05] tracking-tight">
           <SplitWords
-            text="This site is my digital home — a living record of my story, my builds, and my path into full-stack and AI engineering."
-            highlight={["digital home", "story", "path"]}
+            text="I build full-stack products end to end — auth, payments, real-time, admin — and I ship every one of them to a URL you can open."
+            highlight={["end to end", "ship"]}
           />
         </h2>
 
         <Reveal delay={0.1} className="mt-8 max-w-xl">
           <p className="text-pretty text-base leading-relaxed text-muted dark:text-bone/60 md:text-lg">
-            I&apos;m a VIT Bhopal AIML student focused on becoming a full-stack developer and
-            generative AI engineer. I share the experiments, projects, and lessons that
-            shape my growth.
+            I&apos;m an AI &amp; ML undergrad at VIT Bhopal who builds on the web. Four products
+            live in production, two web development internships behind me, and seven machine
+            learning models trained along the way.
           </p>
         </Reveal>
 

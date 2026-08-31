@@ -49,9 +49,9 @@ export default function SkillsBody() {
 
         <Reveal delay={0.1}>
           <p className="mt-14 max-w-2xl text-pretty text-lg leading-relaxed text-muted dark:text-bone/55">
-            Tools come and go — what stays is the ability to learn fast, choose the right
-            one for the job, and build something dependable with it. I&apos;m always
-            sharpening the kit.
+            Every tool on this list earned its place in a project that went to production.
+            When something new is the right call, I pick it up the same way — by building
+            with it until it ships.
           </p>
         </Reveal>
       </div>

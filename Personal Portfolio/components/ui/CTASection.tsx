@@ -15,7 +15,7 @@ export default function CTASection() {
           <MaskText lines={["Let's build and learn."]} className="text-vermillion" delay={0.08} />
         </h2>
         <p className="mt-8 max-w-md text-pretty text-bone/60">
-          {site.availability} — tell me what you&apos;re building.
+          {site.availabilityLong} — tell me what you&apos;re building.
         </p>
         <Magnetic strength={0.4} className="mt-10">
           <Link

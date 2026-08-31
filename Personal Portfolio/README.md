@@ -5,6 +5,11 @@ A premium, animated portfolio for a full-stack developer. Bold editorial design
 scrolling, masked text reveals, magnetic buttons, a custom cursor, hover-tilt
 project cards and a page-load intro.
 
+Every project listed on the site links to a live deploy and its source repo —
+[FitStake](https://fit-stake-nu.vercel.app/), [Voyago](https://voyago-zeta-coral.vercel.app/),
+[Forever](https://ecommerce-frontend-omega-red-83.vercel.app/) and
+[Chatapp](https://chatapps-chi.vercel.app/login).
+
 ## Stack
 
 - **Next.js 15** (App Router) + **React 19** + **TypeScript**
@@ -42,15 +47,41 @@ A few specifics:
   image works best — it's shown in a circular frame.
 - **Domain / SEO:** set `site.url` in `lib/content.ts` to your real domain so
   Open Graph tags, the sitemap and robots.txt point to the right place.
-- **Contact form:** it currently opens the visitor's mail client (no backend).
-  To send through a service, replace the submit handler in
-  [`components/home/Contact.tsx`](components/home/Contact.tsx) with a `POST` to an
-  API route or form service (Resend, Formspree, etc.).
+- **Contact form:** it posts to [Web3Forms](https://web3forms.com) from the
+  browser. Set `NEXT_PUBLIC_WEB3FORMS_KEY` in `.env.local` (and in your Vercel
+  project) to your access key. The handler lives in
+  [`components/contact/ContactForm.tsx`](components/contact/ContactForm.tsx).
+- **Projects:** each entry in `projects` drives both the `/work` card *and* its
+  case-study page at `/work/[slug]`. Fields:
+  - `short` — one-liner for the hover preview on the home page
+  - `blurb` — the paragraph on `/work` and the case-study header
+  - `overview` + `highlights[]` + `notes[]` — the case-study body
+  - `live` / `repo` — external links
+  - `shot` / `shotFit` — screenshot path and how it sits in a card
+  - `demo` — read-only demo credentials, rendered next to the live link
+- **Demo credentials:** set `demo: { user, password, note? }` on a project and a
+  copyable credentials block appears on its case study, so a visitor never hits
+  a login wall with no way through. Omit it and nothing renders.
+- **Résumé:** replace `public/Aryan_Jaiswal_Resume.pdf` (path set by
+  `site.resume`). Linked from the nav, footer and contact page.
+
+## Screenshots
+
+```bash
+npm run shots            # capture every project's live site
+npm run shots fitstake   # just one
+```
+
+Captures each `live` URL to `public/shots/<slug>.png` with Playwright. Re-run
+after redeploying a project. Mobile-first apps get a phone viewport — see
+`VIEWPORTS` in [`scripts/shots.mjs`](scripts/shots.mjs) — and are displayed with
+`shotFit: "contain"` so they read as a device mockup rather than a cropped page.
 
 ## Project structure
 
 ```
-app/                 Routes (home + 6 pages), layout, SEO (sitemap/robots/og/icon)
+app/                 Routes (home + 6 pages + /work/[slug]), layout, SEO
+  work/[slug]/       Per-project case studies (statically generated)
 components/
   home/              Home page sections (Hero, Work, About, Contact, …)
   layout/            Nav, Footer
@@ -60,7 +91,9 @@ components/
 lib/
   content.ts         ← all site content
   utils.ts           cn() class helper
+scripts/shots.mjs    Playwright screenshot capture
 public/profile.png   Your headshot
+public/shots/        Generated project screenshots
 ```
 
 ## Accessibility & performance
@@ -68,7 +101,15 @@ public/profile.png   Your headshot
 - Respects `prefers-reduced-motion` (intro, smooth scroll and animations back off).
 - Custom cursor only on fine-pointer devices; native cursor on touch.
 - Semantic headings, labelled form fields, alt text on the portrait.
+- A "Skip to content" link — the custom cursor, intro overlay and smooth scroll
+  otherwise leave keyboard users with a long path to the page body.
+- `Person` JSON-LD in the layout (`sameAs` → GitHub, LinkedIn, LeetCode).
+- Vercel Analytics + Speed Insights.
 - All pages are statically prerendered.
+
+> `npm run lint` uses the ESLint CLI (`eslint .`) — `next lint` is deprecated and
+> breaks on flat config. `react-hooks/set-state-in-effect` is set to warn: every
+> current hit is the legitimate "read a browser-only value on mount" pattern.
 
 ## Deploy
 

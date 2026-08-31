@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
  */
 export default function Portrait({
   className,
-  ringText = "AVAILABLE FOR WORK — 2026 — FULL-STACK DEVELOPER — ",
+  ringText = "OPEN TO INTERNSHIPS — 2026 — FULL-STACK DEVELOPER — ",
   priority = false,
 }: {
   className?: string;
@@ -42,7 +42,7 @@ export default function Portrait({
       <div className="absolute inset-[14%] overflow-hidden rounded-full border border-ink/10 bg-ink-2 shadow-[0_30px_80px_-30px_rgba(19,18,16,0.55)] dark:border-bone/15">
         <Image
           src="/profile.png"
-          alt="Aryan Jaiswal, Full-Stack Web Developer"
+          alt="Aryan Jaiswal, full-stack developer"
           fill
           priority={priority}
           sizes="(max-width: 768px) 60vw, 30vw"

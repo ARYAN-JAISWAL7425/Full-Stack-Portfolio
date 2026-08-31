@@ -84,8 +84,16 @@ export default function Nav() {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-vermillion opacity-60" />
                 <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-vermillion" />
               </span>
-              Open to internships
+              {site.availability}
             </span>
+            <a
+              href={site.resume}
+              download
+              data-cursor="resume"
+              className="link-underline text-sm font-medium text-ink dark:text-bone"
+            >
+              Résumé ↓
+            </a>
             <ThemeToggle />
             <Magnetic strength={0.45}>
               <Link
@@ -156,6 +164,9 @@ export default function Nav() {
               ))}
             </ul>
             <div className="flex flex-wrap gap-x-6 gap-y-2 font-mono text-[11px] uppercase tracking-mono text-bone/60">
+              <a href={site.resume} download className="text-vermillion-soft">
+                Résumé ↓
+              </a>
               {socials.map((s) => (
                 <a key={s.label} href={s.href} target="_blank" rel="noreferrer">
                   {s.label}

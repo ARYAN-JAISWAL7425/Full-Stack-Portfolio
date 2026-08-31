@@ -6,7 +6,7 @@ import { site } from "@/lib/content";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Reach out with feedback, collaboration ideas, or internship opportunities.",
+    "Get in touch with Aryan Jaiswal about internships, freelance full-stack work, or collaboration on a build.",
 };
 
 export default function ContactPage() {
@@ -20,11 +20,12 @@ export default function ContactPage() {
       />
 
       <section className="bg-bone dark:bg-night pb-16">
-        <div className="container-x grid gap-px overflow-hidden rounded-2xl border border-ink/12 dark:border-bone/12 bg-ink/12 dark:bg-bone/12 sm:grid-cols-3">
+        <div className="container-x grid gap-px overflow-hidden rounded-2xl border border-ink/12 dark:border-bone/12 bg-ink/12 dark:bg-bone/12 sm:grid-cols-2 lg:grid-cols-4">
           {[
             { label: "Email", value: site.email, href: `mailto:${site.email}` },
             { label: "Based in", value: site.location },
             { label: "Availability", value: site.availability },
+            { label: "Résumé", value: "Download PDF", href: site.resume },
           ].map((item) => (
             <div key={item.label} className="bg-bone dark:bg-night px-7 py-12 md:px-9 md:py-16">
               <p className="eyebrow">/ {item.label}</p>

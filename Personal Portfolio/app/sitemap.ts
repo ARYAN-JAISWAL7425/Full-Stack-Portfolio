@@ -1,9 +1,13 @@
 import type { MetadataRoute } from "next";
-import { siteUrl, nav } from "@/lib/content";
+import { siteUrl, nav, projects } from "@/lib/content";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
-  const routes = ["/", ...nav.map((n) => n.href)];
+  const routes = [
+    "/",
+    ...nav.map((n) => n.href),
+    ...projects.map((p) => `/work/${p.slug}`),
+  ];
   return routes.map((route) => ({
     url: `${siteUrl}${route}`,
     lastModified: now,
